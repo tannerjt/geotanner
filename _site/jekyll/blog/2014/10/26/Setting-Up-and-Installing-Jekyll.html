@@ -76,10 +76,11 @@
 <p>This post <strong>is not</strong> a complete guide on how to create a blog with <a href="http://jekyllrb.com">Jekyll</a>, but rather a guide to installing and hosting a blog using <a href="http://jekyllrb.com">Jekyll</a> on <a href="https://pages.github.com/">GitHub</a>.  The documentation on <a href="http://jekyllrb.com">Jekyll</a> is very comprehensive, and should be used to guide you into building a solid blog. </p>
 
 <h3 id="installation">Installation</h3>
-<p>I am using a Mac OSX environment, and although Windows is not officially supported, you can get Windows specific docs <a href="http://jekyllrb.com/docs/windows/#installation">here</a>.  Before installing Jekyll, you will need to already have <a href="https://www.ruby-lang.org/en/downloads/">Ruby</a>, <a href="http://rubygems.org/pages/download">RubyGems</a>, and <a href="http://nodejs.org/">NodeJS</a>.  You can check if you already have these installed by using Terminal command line:</p>
+<p>I am using a Mac OSX environment, and although Windows is not officially supported, you can get Windows specific docs <a href="http://jekyllrb.com/docs/windows/#installation">here</a>.  Before installing Jekyll, you will need to already have <a href="https://www.ruby-lang.org/en/downloads/">Ruby</a>, <a href="http://rubygems.org/pages/download">RubyGems</a>, <a href="http://nodejs.org/">NodeJS</a>, and <a href="http://git-scm.com/">Git</a>.  You can check if you already have these installed by using Terminal command line:</p>
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">node -v
-ruby -v</code></pre></div>
+ruby -v
+git --version</code></pre></div>
 
 <p>If you have <a href="http://brew.sh/">Homebrew</a>, a package manager for OSX, you can install them easily by typing:</p>
 
@@ -90,13 +91,13 @@ brew install node</code></pre></div>
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">sudo gem install jekyll</code></pre></div>
 
-<p>You can create your new site wherever you like, but I like to organize it in <strong>Documents/blog</strong>.  Here I can create multiple blogs and have them in one central location.  The blog does not need to be saved in you <strong>sites</strong> folder, because you will serve your site locally with its’ own server.  To create your site files, use the following commands (<em>change my-new-blog to your blog’s name</em>):</p>
+<p>You can create your new site wherever you like, but I like to organize mine in <strong>Documents/blog</strong>.  Here you can create multiple blogs and have them in one central location.  The blog does not need to be saved in you <strong>sites</strong> folder, because you will serve your site locally with its’ own server for testing.  To create your site files, use the following commands (<em>change my-new-blog to your blog’s name</em>):</p>
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">mkdir ~/Documents/blog &amp;&amp; cd ~/Documents/blog
 jekyll new my-new-blog
 cd my-new-blog</code></pre></div>
 
-<p>You should now see a <a href="http://jekyllrb.com/docs/structure/">Directory Structure</a> that looks like the one below:</p>
+<p>You should now see a <a href="http://jekyllrb.com/docs/structure/">Directory Structure</a> that looks similar to the one below:</p>
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">├── _config.yml
 ├── _drafts
@@ -117,14 +118,45 @@ cd my-new-blog</code></pre></div>
 └── index.html</code></pre></div>
 
 <h3 id="serving-your-site-locally">Serving Your Site Locally</h3>
-<p>You can now use <a href="http://jekyllrb.com">Jekyll</a>’s command line interface to <a href="http://jekyllrb.com/docs/usage/">build and serve</a> your changes and generate the static HTML of your site.  When you use <strong>build</strong>, your are generating your site.  Using <strong>serve</strong> generates your site, and launches a built-in web server to preview your site locally in your browser.  To do this, you will need to type the following:</p>
+<p>You can now use <a href="http://jekyllrb.com">Jekyll</a>’s command line interface to <a href="http://jekyllrb.com/docs/usage/">build and serve</a> your changes and generate the static HTML of your site.  When you use <strong>build</strong>, you are generating your site.  Using <strong>serve</strong> generates your site, and launches a built-in web server to preview your site locally in your browser.  To do this, you will need to type the following:</p>
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">jekyll serve</code></pre></div>
 
 <p>Once the local web server is deployed, you can go to <a href="http://localhost:4000">http://localhost:4000</a> to view your site.  The site uses a default template provided by <a href="jekyll">Jekyll</a>.  You will need to read through their documentation to learn how to create modify your site and create new entries.</p>
 
 <h3 id="deploying-to-github-pages">Deploying to GitHub Pages</h3>
-<p>With <a href="https://pages.github.com/">GitHub Pages</a>, you can create one user site and unlimited project sites.  For this example, we are going to create a project site to push our blog to.  If you do not already have an existing <a href="https://github.com/">GitHub</a> account, you will need to create one.</p>
+<p>With <a href="https://pages.github.com/">GitHub Pages</a>, you can create one user site and unlimited project sites.  For this example, we are going to create a project site to push our blog to.  If you do not already have an existing <a href="https://github.com/">GitHub</a> account, you will need to create one.  Once you are logged into your <a href="https://github.com/">GitHub</a> account, you will need to create a new <strong>empty</strong> repository.  We will initialize and create the appropriate branch for our project site to render.  Make sure to keep note of your GitHub URL to add as a remote.  It will look similar to this <strong>https://github.com/tannerjt/geotanner.git</strong>.</p>
+
+<p>Since the URL structure will change from root to your repo directory, you need to change the <strong>baseurl</strong> property in your _config.yml file.  It will need to look like this:</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">// for this blog it looks like
+// baseurl : &quot;/geotanner&quot;
+baseurl : &quot;/repo_name&quot;</code></pre></div>
+
+<p>Before publishing our site, lets build any changes</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">jekyll build</code></pre></div>
+
+<p>We will initialize our git repository and add the required gh-pages branch.  This is the default branch needed for the page to render in <a href="https://github.com/">GitHub</a>.  We will also need to add and commit all of our code.</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">// Initialize git repo
+git init
+// Create and checkout branch
+git checkout -b gh-pages
+// Add and commit code
+git add .
+git commit -m &quot;Initial Commit&quot;</code></pre></div>
+
+<p>Finally, in order to push the content to <a href="https://github.com/">GitHub</a>, we will add our remote repo to push to:</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">// Add remote, well call it github
+git remote add github https://github.com/tannerjt/geotanner.git
+// Push gh-pages branch to remote
+git push github gh-pages</code></pre></div>
+
+<p><strong>Now you are done!!</strong>  Your new site should be live and available at [username].github.io/[reponame]</p>
+
+<p>If you are like me, nothing ever goes smoothly they first time.  I encourage you to use the links on this page for all of the resources mentioned.  With a little persistance, you will be able to solve any problems you had during the process.</p>
 
 
   </article>

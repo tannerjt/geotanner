@@ -10,7 +10,7 @@ The blog is built using [jekyll](http://jekyllrb.com/).
 
 ### Me
 
-![Profile Picture](/images/profile/me.jpeg "Profile Picture")
+![Profile Picture]({{site.baseurl}}/images/profile/me.jpeg "Profile Picture")
 
 My name is Joshua Tanner and I am passionate about famiily, geography, surfing, running, and programming.
 

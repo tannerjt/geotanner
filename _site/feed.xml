@@ -4,10 +4,17 @@
     <title>Tanner Geo Blog</title>
     <description>Tanner GEO Blog contains guides, snippets, and examples of building applications. I am a science and geo geek, but love programming and building just about anything.
 </description>
+<<<<<<< HEAD
     <link>http://tannerjt.github.io/geotanner//</link>
     <atom:link href="http://tannerjt.github.io/geotanner//feed.xml" rel="self" type="application/rss+xml" />
     <pubDate>Sun, 26 Oct 2014 19:54:57 -0700</pubDate>
     <lastBuildDate>Sun, 26 Oct 2014 19:54:57 -0700</lastBuildDate>
+=======
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 26 Oct 2014 18:46:57 -0700</pubDate>
+    <lastBuildDate>Sun, 26 Oct 2014 18:46:57 -0700</lastBuildDate>
+>>>>>>> e84d68aff1bc7ca4105be83c025ea815fb6fb844
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -28,8 +35,13 @@
 
 </description>
         <pubDate>Sun, 26 Oct 2014 07:50:19 -0700</pubDate>
+<<<<<<< HEAD
         <link>http://tannerjt.github.io/geotanner//jekyll/update/2014/10/26/welcome-to-jekyll.html</link>
         <guid isPermaLink="true">http://tannerjt.github.io/geotanner//jekyll/update/2014/10/26/welcome-to-jekyll.html</guid>
+=======
+        <link>http://localhost:4000/jekyll/update/2014/10/26/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2014/10/26/welcome-to-jekyll.html</guid>
+>>>>>>> e84d68aff1bc7ca4105be83c025ea815fb6fb844
         
         
         <category>jekyll</category>
@@ -102,12 +114,21 @@ cd my-new-blog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Once the local web server is deployed, you can go to &lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt; to view your site.  The site uses a default template provided by &lt;a href=&quot;jekyll&quot;&gt;Jekyll&lt;/a&gt;.  You will need to read through their documentation to learn how to create modify your site and create new entries.&lt;/p&gt;
 
 &lt;h3 id=&quot;deploying-to-github-pages&quot;&gt;Deploying to GitHub Pages&lt;/h3&gt;
+<<<<<<< HEAD
 &lt;p&gt;With &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, you can create one user site and unlimited project sites.  For this example, we are going to create a project site to push our blog to.  If you do not already have an existing &lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt; account, you will need to create one.&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 26 Oct 2014 00:00:00 -0700</pubDate>
         <link>http://tannerjt.github.io/geotanner//jekyll/blog/2014/10/26/Setting-Up-and-Installing-Jekyll.html</link>
         <guid isPermaLink="true">http://tannerjt.github.io/geotanner//jekyll/blog/2014/10/26/Setting-Up-and-Installing-Jekyll.html</guid>
+=======
+&lt;p&gt;With &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, you can create one user site and unlimited project sites.  For this example, we are going to create a project site to push our blog to.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 26 Oct 2014 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/jekyll/blog/2014/10/26/Setting-Up-and-Installing-Jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/blog/2014/10/26/Setting-Up-and-Installing-Jekyll.html</guid>
+>>>>>>> e84d68aff1bc7ca4105be83c025ea815fb6fb844
         
         <category>jekyll</category>
         

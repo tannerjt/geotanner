@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tanner Geo Blog</title>
+    <description>Tanner GEO Blog contains guides, snippets, and examples of building applications. I am a science and geo geek, but love programming and building just about anything.
+</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 26 Oct 2014 18:46:57 -0700</pubDate>
+    <lastBuildDate>Sun, 26 Oct 2014 18:46:57 -0700</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve --watch&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 26 Oct 2014 07:50:19 -0700</pubDate>
+        <link>http://localhost:4000/jekyll/update/2014/10/26/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2014/10/26/welcome-to-jekyll.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Setting Up and Installing Jekyll</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a site generator (&lt;em&gt;built with &lt;a href=&quot;https://www.ruby-lang.org/en/&quot;&gt;Ruby&lt;/a&gt;&lt;/em&gt;) for building highly customizable blogs.  &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is also the core engine behind &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, which allows users to host static sites directly from your &lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt; repository.  If you have ever used CMS or blogging giants like &lt;a href=&quot;https://wordpress.com/&quot;&gt;wordpress&lt;/a&gt;, and experienced performance or troubleshooting issues, &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; may be a welcome change of pace.  For those wanting a quick ‘plug and play’ platform, you may find &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; a little intimidating at first.  However, once you understand the basic file structure and workflow, you will likely be more than impressed at its’ ease of use.&lt;/p&gt;
+
+&lt;p&gt;To really get the most out of &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;, you should have (&lt;em&gt;but not required&lt;/em&gt;) a basic understanding of:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.w3schools.com/html/&quot;&gt;HTML&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.w3schools.com/css/&quot;&gt;CSS&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://daringfireball.net/projects/markdown/&quot;&gt;Markdown&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://git-scm.com/&quot;&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This post &lt;strong&gt;is not&lt;/strong&gt; a complete guide on how to create a blog with &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;, but rather a guide to installing and hosting a blog using &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; on &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub&lt;/a&gt;.  The documentation on &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is very comprehensive, and should be used to guide you into building a solid blog. &lt;/p&gt;
+
+&lt;h3 id=&quot;installation&quot;&gt;Installation&lt;/h3&gt;
+&lt;p&gt;I am using a Mac OSX environment, and although Windows is not officially supported, you can get Windows specific docs &lt;a href=&quot;http://jekyllrb.com/docs/windows/#installation&quot;&gt;here&lt;/a&gt;.  Before installing Jekyll, you will need to already have &lt;a href=&quot;https://www.ruby-lang.org/en/downloads/&quot;&gt;Ruby&lt;/a&gt;, &lt;a href=&quot;http://rubygems.org/pages/download&quot;&gt;RubyGems&lt;/a&gt;, and &lt;a href=&quot;http://nodejs.org/&quot;&gt;NodeJS&lt;/a&gt;.  You can check if you already have these installed by using Terminal command line:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;node -v
+ruby -v&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you have &lt;a href=&quot;http://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;, a package manager for OSX, you can install them easily by typing:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;brew install ruby
+brew install node&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once you have installed all of the pre-requirements, installing &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; should be straightfoward using the command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sudo gem install jekyll&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can create your new site wherever you like, but I like to organize it in &lt;strong&gt;Documents/blog&lt;/strong&gt;.  Here I can create multiple blogs and have them in one central location.  The blog does not need to be saved in you &lt;strong&gt;sites&lt;/strong&gt; folder, because you will serve your site locally with its’ own server.  To create your site files, use the following commands (&lt;em&gt;change my-new-blog to your blog’s name&lt;/em&gt;):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;mkdir ~/Documents/blog &amp;amp;&amp;amp; cd ~/Documents/blog
+jekyll new my-new-blog
+cd my-new-blog&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You should now see a &lt;a href=&quot;http://jekyllrb.com/docs/structure/&quot;&gt;Directory Structure&lt;/a&gt; that looks like the one below:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;├── _config.yml
+├── _drafts
+|   ├── begin-with-the-crazy-ideas.textile
+|   └── on-simplicity-in-technology.markdown
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   └── post.html
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   └── 2009-04-26-barcamp-boston-4-roundup.textile
+├── _data
+|   └── members.yml
+├── _site
+└── index.html&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;serving-your-site-locally&quot;&gt;Serving Your Site Locally&lt;/h3&gt;
+&lt;p&gt;You can now use &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;’s command line interface to &lt;a href=&quot;http://jekyllrb.com/docs/usage/&quot;&gt;build and serve&lt;/a&gt; your changes and generate the static HTML of your site.  When you use &lt;strong&gt;build&lt;/strong&gt;, your are generating your site.  Using &lt;strong&gt;serve&lt;/strong&gt; generates your site, and launches a built-in web server to preview your site locally in your browser.  To do this, you will need to type the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;jekyll serve&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once the local web server is deployed, you can go to &lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt; to view your site.  The site uses a default template provided by &lt;a href=&quot;jekyll&quot;&gt;Jekyll&lt;/a&gt;.  You will need to read through their documentation to learn how to create modify your site and create new entries.&lt;/p&gt;
+
+&lt;h3 id=&quot;deploying-to-github-pages&quot;&gt;Deploying to GitHub Pages&lt;/h3&gt;
+&lt;p&gt;With &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, you can create one user site and unlimited project sites.  For this example, we are going to create a project site to push our blog to.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 26 Oct 2014 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/jekyll/blog/2014/10/26/Setting-Up-and-Installing-Jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/blog/2014/10/26/Setting-Up-and-Installing-Jekyll.html</guid>
+        
+        <category>jekyll</category>
+        
+        <category>blog</category>
+        
+        
+        <category>jekyll</category>
+        
+        <category>blog</category>
+        
+      </item>
+    
+  </channel>
+</rss>

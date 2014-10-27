@@ -4,8 +4,10 @@ email: biolsurfer85@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Tanner GEO Blog contains guides, snippets, and examples of building applications.
   I am a science and geo geek, but love programming and building just about anything.
-baseurl: "" # the subpath of your site, e.g. /blog/
+baseurl: "/" # the subpath of your site, e.g. /blog/
 url: "http://tannerjt.github.io/geotanner/" # the base hostname & protocol for your site
+repo: "https://github.com/tannerjt/geotanner"
+
 #twitter_username: 
 github_username:  tannerjt
 

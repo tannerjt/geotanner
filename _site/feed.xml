@@ -6,9 +6,123 @@
 </description>
     <link>http://tannerjt.github.io/geotanner//geotanner/</link>
     <atom:link href="http://tannerjt.github.io/geotanner//geotanner/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 26 Oct 2014 22:26:30 -0700</pubDate>
-    <lastBuildDate>Sun, 26 Oct 2014 22:26:30 -0700</lastBuildDate>
+    <pubDate>Wed, 29 Oct 2014 20:31:06 -0700</pubDate>
+    <lastBuildDate>Wed, 29 Oct 2014 20:31:06 -0700</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>classybrew: A data classification tool</title>
+        <description>&lt;p&gt;&lt;strong&gt;&lt;em&gt;Make your map beautiful and statistically relevant&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tannerjt/classybrew&quot;&gt;ClassyBrew&lt;/a&gt; on GitHub&lt;/p&gt;
+
+&lt;p&gt;When creating a choropleth map, there are generally two key questions.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;How do I classify the data? (&lt;em&gt;break up the data&lt;/em&gt;)&lt;/li&gt;
+  &lt;li&gt;What color scheme should be used?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Data Classification&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you ever classified data using GIS desktop software or a capable API like &lt;a href=&quot;https://developers.arcgis.com/javascript/jsapi/classbreaksrenderer-amd.html&quot;&gt;Esri’s Javascript API&lt;/a&gt;, you’ve been lucky to have this already solved for you.  A quick selection of an appropriate data classification, such as: equal area, natural breaks, quantile, standard deviation, etc. will provide you with breaks in your data.  Once your data is classified you can define how you want to symbolize your data by color, or select any available color palettes.  You still need to answer the above questions, but all the tools are ready at your disposal.&lt;/p&gt;
+
+&lt;p&gt;My favorite data classification method is called the Jenks Natural Breaks method.  It calculates inherent places to break up your data based on the number of classes you want.  These statistically related numeric ranges are perfect for a when you want a meaningful breakup of you data.  If you are looking for an amazing writeup of the Jenks Natural Breaks, and an algorithm in Python, read the following blog post by Daniel Lewis:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://danieljlewis.org/2010/06/07/jenks-natural-breaks-algorithm-in-python/&quot;&gt;Jenks’ Natural Breaks Algorithm in Python&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I started to break down the algorithim into javascript, until I blindly stumbled &lt;a href=&quot;https://github.com/simogeo/geostats&quot;&gt;geostats&lt;/a&gt;, a comprehensive open source library provided by Simon Georget.  Geostats is a standalone library that provides methods to classify your data using various different methodoligies, including Jenks Natural Breaks.  If you are looking for a multipurpose tool, I would defintely consider incorporating it into your future projects.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Color Theory&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;What colors best represent your newly classified data?  More often than most, you will be classifying your data because it follows some sequential pattern.  &lt;a href=&quot;http://www.personal.psu.edu/cab38/&quot;&gt;Cynthia Brewer&lt;/a&gt; has spend a good chunk of her career figuring this out for you.  Thank you &lt;a href=&quot;http://www.personal.psu.edu/cab38/&quot;&gt;Cynthia&lt;/a&gt;!  Her research and cartographical background created &lt;a href=&quot;https://github.com/axismaps/colorbrewer&quot;&gt;COLORBREWER&lt;/a&gt;, a visual decision making tool for coloring your map to represent your data.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Problem&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I recently created a map in &lt;a href=&quot;http://leafletjs.com/&quot;&gt;Leaflet&lt;/a&gt; and needed to classify my data (geojson) and assign a color value to each sequential range.  Since there is no inherent ability to render data based on associated values, you will need to do this from scratch.  I found a handy &lt;a href=&quot;http://leafletjs.com/examples/choropleth.html&quot;&gt;chropleth example&lt;/a&gt; on &lt;a href=&quot;http://leafletjs.com/&quot;&gt;Leaflet&lt;/a&gt; that did just that.&lt;/p&gt;
+
+&lt;p&gt;This was accomplished by manually defining your breaks and returning , again a manually assigned color:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#800026&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+           &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#BD0026&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+           &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#E31A1C&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+           &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#FC4E2A&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+           &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#FD8D3C&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+           &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#FEB24C&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+           &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#FED976&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+                      &lt;span class=&quot;s1&quot;&gt;&amp;#39;#FFEDA0&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I’m sure you can see a problem with this method.  If your data changes or you want a new color palette, you have to manually change these values.&lt;/p&gt;
+
+&lt;p&gt;What I needed was an automatic way to do this.  The pseudocode looked like:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Define my data series
+Define the desired number of classes
+Define the color palette based on ColorBrewer
+Classify your data using Jenks Method
+function getColor(number) {
+	return appropriate color
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;The Solution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the &lt;a href=&quot;http://danieljlewis.org/2010/06/07/jenks-natural-breaks-algorithm-in-python/&quot;&gt;Jenks’&lt;/a&gt; algorithm and sequential &lt;a href=&quot;https://github.com/axismaps/colorbrewer&quot;&gt;colorbrewer&lt;/a&gt; palette, I created &lt;a href=&quot;https://github.com/tannerjt/classybrew&quot;&gt;classybrew&lt;/a&gt;.  It does exacly what the above pseudocode defines.&lt;/p&gt;
+
+&lt;p&gt;Here is the setup:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;brew&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;classyBrew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;brew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setSeries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;30.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;14.9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;22.71&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;24.96&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;7.17&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...]);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;brew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setNumClasses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;brew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setColorCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;BuGn&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Oranges, Blues, BuGn, GnBu, ...etc &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;brew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;classify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we can use the &lt;a href=&quot;http://leafletjs.com/examples/choropleth.html&quot;&gt;Leaflet choropleth example&lt;/a&gt; using the newly automated generator.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;brew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getColorInRange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Everytime we call &lt;strong&gt;getColor&lt;/strong&gt;, we will now have our Jenks’ classified and ColorBrewer approved color representing the provided number.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Yay!!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;GitHub Repository&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Feel free to use the JavaScript library, provided here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tannerjt/classybrew&quot;&gt;ClassyBrew&lt;/a&gt; on GitHub &lt;/p&gt;
+
+&lt;p&gt;The library contains a simple example of using the classybrew object, as well as a minified version only &lt;strong&gt;&lt;em&gt;18kb&lt;/em&gt;&lt;/strong&gt; in size. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Considerations&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Thank you to the following individuals for helping make this possible:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.personal.psu.edu/cab38/&quot;&gt;Cynthia Brewer&lt;/a&gt; - ColorBrewer&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/simogeo/geostats&quot;&gt;Simon Georget&lt;/a&gt; - GeoStats&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://danieljlewis.org/2010/06/07/jenks-natural-breaks-algorithm-in-python/&quot;&gt;Daniel J. Lewis&lt;/a&gt; - Jenks Natural Breaks Description&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 29 Oct 2014 00:00:00 -0700</pubDate>
+        <link>http://tannerjt.github.io/geotanner//geotanner/javascript/color-theory/2014/10/29/classybrew-jenks-heart-colorbrewer.html</link>
+        <guid isPermaLink="true">http://tannerjt.github.io/geotanner//geotanner/javascript/color-theory/2014/10/29/classybrew-jenks-heart-colorbrewer.html</guid>
+        
+        <category>javascript</category>
+        
+        <category>color-theory</category>
+        
+        <category>data</category>
+        
+        
+        <category>javascript</category>
+        
+        <category>color-theory</category>
+        
+      </item>
     
       <item>
         <title>Setting Up and Installing Jekyll</title>

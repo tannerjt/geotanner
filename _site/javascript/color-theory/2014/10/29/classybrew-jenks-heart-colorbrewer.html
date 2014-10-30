@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>classybrew: A data classification tool</title>
+    <meta name="description" content="Tanner GEO Blog contains guides, snippets, and examples of building applications. I am a science and geo geek, but love programming and building just about anything.
+">
+
+    <link rel="stylesheet" href="/geotanner/css/main.css">
+    <link rel="canonical" href="http://tannerjt.github.io/geotanner//geotanner/javascript/color-theory/2014/10/29/classybrew-jenks-heart-colorbrewer.html">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/geotanner/">Tanner Geo Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/geotanner/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">classybrew: A data classification tool</h1>
+    <p class="post-meta">Oct 29, 2014</p>
+  </header>
+
+  <article class="post-content">
+    <p><strong><em>Make your map beautiful and statistically relevant</em></strong></p>
+
+<p><a href="https://github.com/tannerjt/classybrew">ClassyBrew</a> on GitHub</p>
+
+<p>When creating a choropleth map, there are generally two key questions.</p>
+
+<ol>
+  <li>How do I classify the data? (<em>break up the data</em>)</li>
+  <li>What color scheme should be used?</li>
+</ol>
+
+<p><strong>Data Classification</strong></p>
+
+<p>If you ever classified data using GIS desktop software or a capable API like <a href="https://developers.arcgis.com/javascript/jsapi/classbreaksrenderer-amd.html">Esri’s Javascript API</a>, you’ve been lucky to have this already solved for you.  A quick selection of an appropriate data classification, such as: equal area, natural breaks, quantile, standard deviation, etc. will provide you with breaks in your data.  Once your data is classified you can define how you want to symbolize your data by color, or select any available color palettes.  You still need to answer the above questions, but all the tools are ready at your disposal.</p>
+
+<p>My favorite data classification method is called the Jenks Natural Breaks method.  It calculates inherent places to break up your data based on the number of classes you want.  These statistically related numeric ranges are perfect for a when you want a meaningful breakup of you data.  If you are looking for an amazing writeup of the Jenks Natural Breaks, and an algorithm in Python, read the following blog post by Daniel Lewis:</p>
+
+<p><a href="http://danieljlewis.org/2010/06/07/jenks-natural-breaks-algorithm-in-python/">Jenks’ Natural Breaks Algorithm in Python</a></p>
+
+<p>I started to break down the algorithim into javascript, until I blindly stumbled <a href="https://github.com/simogeo/geostats">geostats</a>, a comprehensive open source library provided by Simon Georget.  Geostats is a standalone library that provides methods to classify your data using various different methodoligies, including Jenks Natural Breaks.  If you are looking for a multipurpose tool, I would defintely consider incorporating it into your future projects.</p>
+
+<p><strong>Color Theory</strong></p>
+
+<p>What colors best represent your newly classified data?  More often than most, you will be classifying your data because it follows some sequential pattern.  <a href="http://www.personal.psu.edu/cab38/">Cynthia Brewer</a> has spend a good chunk of her career figuring this out for you.  Thank you <a href="http://www.personal.psu.edu/cab38/">Cynthia</a>!  Her research and cartographical background created <a href="https://github.com/axismaps/colorbrewer">COLORBREWER</a>, a visual decision making tool for coloring your map to represent your data.  </p>
+
+<p><strong>The Problem</strong></p>
+
+<p>I recently created a map in <a href="http://leafletjs.com/">Leaflet</a> and needed to classify my data (geojson) and assign a color value to each sequential range.  Since there is no inherent ability to render data based on associated values, you will need to do this from scratch.  I found a handy <a href="http://leafletjs.com/examples/choropleth.html">chropleth example</a> on <a href="http://leafletjs.com/">Leaflet</a> that did just that.</p>
+
+<p>This was accomplished by manually defining your breaks and returning , again a manually assigned color:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">getColor</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">d</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="o">?</span> <span class="s1">&#39;#800026&#39;</span> <span class="o">:</span>
+           <span class="nx">d</span> <span class="o">&gt;</span> <span class="mi">500</span>  <span class="o">?</span> <span class="s1">&#39;#BD0026&#39;</span> <span class="o">:</span>
+           <span class="nx">d</span> <span class="o">&gt;</span> <span class="mi">200</span>  <span class="o">?</span> <span class="s1">&#39;#E31A1C&#39;</span> <span class="o">:</span>
+           <span class="nx">d</span> <span class="o">&gt;</span> <span class="mi">100</span>  <span class="o">?</span> <span class="s1">&#39;#FC4E2A&#39;</span> <span class="o">:</span>
+           <span class="nx">d</span> <span class="o">&gt;</span> <span class="mi">50</span>   <span class="o">?</span> <span class="s1">&#39;#FD8D3C&#39;</span> <span class="o">:</span>
+           <span class="nx">d</span> <span class="o">&gt;</span> <span class="mi">20</span>   <span class="o">?</span> <span class="s1">&#39;#FEB24C&#39;</span> <span class="o">:</span>
+           <span class="nx">d</span> <span class="o">&gt;</span> <span class="mi">10</span>   <span class="o">?</span> <span class="s1">&#39;#FED976&#39;</span> <span class="o">:</span>
+                      <span class="s1">&#39;#FFEDA0&#39;</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>I’m sure you can see a problem with this method.  If your data changes or you want a new color palette, you have to manually change these values.</p>
+
+<p>What I needed was an automatic way to do this.  The pseudocode looked like:</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">Define my data series
+Define the desired number of classes
+Define the color palette based on ColorBrewer
+Classify your data using Jenks Method
+function getColor(number) {
+	return appropriate color
+}</code></pre></div>
+
+<p><strong>The Solution</strong></p>
+
+<p>Using the <a href="http://danieljlewis.org/2010/06/07/jenks-natural-breaks-algorithm-in-python/">Jenks’</a> algorithm and sequential <a href="https://github.com/axismaps/colorbrewer">colorbrewer</a> palette, I created <a href="https://github.com/tannerjt/classybrew">classybrew</a>.  It does exacly what the above pseudocode defines.</p>
+
+<p>Here is the setup:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">brew</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">classyBrew</span><span class="p">();</span>
+<span class="nx">brew</span><span class="p">.</span><span class="nx">setSeries</span><span class="p">([</span><span class="mf">30.01</span><span class="p">,</span> <span class="mf">14.9</span><span class="p">,</span> <span class="mf">22.71</span><span class="p">,</span> <span class="mf">24.96</span><span class="p">,</span> <span class="mf">7.17</span><span class="p">,</span> <span class="p">...]);</span>
+<span class="nx">brew</span><span class="p">.</span><span class="nx">setNumClasses</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="nx">brew</span><span class="p">.</span><span class="nx">setColorCode</span><span class="p">(</span><span class="s2">&quot;BuGn&quot;</span><span class="p">);</span> <span class="c1">// Oranges, Blues, BuGn, GnBu, ...etc </span>
+<span class="nx">brew</span><span class="p">.</span><span class="nx">classify</span><span class="p">();</span></code></pre></div>
+
+<p>Now we can use the <a href="http://leafletjs.com/examples/choropleth.html">Leaflet choropleth example</a> using the newly automated generator.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">getColor</span><span class="p">(</span><span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">brew</span><span class="p">.</span><span class="nx">getColorInRange</span><span class="p">(</span><span class="nx">number</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Everytime we call <strong>getColor</strong>, we will now have our Jenks’ classified and ColorBrewer approved color representing the provided number.  </p>
+
+<p><strong><em>Yay!!</em></strong></p>
+
+<p><strong>GitHub Repository</strong></p>
+
+<p>Feel free to use the JavaScript library, provided here:</p>
+
+<p><a href="https://github.com/tannerjt/classybrew">ClassyBrew</a> on GitHub </p>
+
+<p>The library contains a simple example of using the classybrew object, as well as a minified version only <strong><em>18kb</em></strong> in size. </p>
+
+<p><strong>Considerations</strong></p>
+
+<p>Thank you to the following individuals for helping make this possible:</p>
+
+<p><a href="http://www.personal.psu.edu/cab38/">Cynthia Brewer</a> - ColorBrewer</p>
+
+<p><a href="https://github.com/simogeo/geostats">Simon Georget</a> - GeoStats</p>
+
+<p><a href="http://danieljlewis.org/2010/06/07/jenks-natural-breaks-algorithm-in-python/">Daniel J. Lewis</a> - Jenks Natural Breaks Description</p>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Tanner Geo Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Tanner Geo Blog</li>
+          <li><a href="mailto:biolsurfer85@gmail.com">biolsurfer85@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/tannerjt">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">tannerjt</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Tanner GEO Blog contains guides, snippets, and examples of building applications. I am a science and geo geek, but love programming and building just about anything.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

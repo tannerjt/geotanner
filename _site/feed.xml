@@ -6,9 +6,103 @@
 </description>
     <link>http://tannerjt.github.io/geotanner//geotanner/</link>
     <atom:link href="http://tannerjt.github.io/geotanner//geotanner/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 29 Oct 2014 20:31:06 -0700</pubDate>
-    <lastBuildDate>Wed, 29 Oct 2014 20:31:06 -0700</lastBuildDate>
+    <pubDate>Sun, 23 Nov 2014 18:25:08 -0800</pubDate>
+    <lastBuildDate>Sun, 23 Nov 2014 18:25:08 -0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Backbone: The Essentials</title>
+        <description>&lt;p&gt;&lt;strong&gt;What is Backbone.js?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://backbonejs.org/&quot;&gt;Backbone.js&lt;/a&gt; is a JavaScript library that provides a simplistic structure to organize your client-side JavaScript code.  If you have used other popular frameworks, like &lt;a href=&quot;https://angularjs.org/&quot;&gt;AngularJS&lt;/a&gt;, you will have an easier time getting familiar with &lt;a href=&quot;http://backbonejs.org/&quot;&gt;backbone.js&lt;/a&gt;.  For those coming from a traditional MVC (model-view-controller) framework, you may be a little confused with the lack of a controller in &lt;a href=&quot;http://backbonejs.org/&quot;&gt;backbone.js&lt;/a&gt;.  In &lt;a href=&quot;http://backbonejs.org/&quot;&gt;backbone.js&lt;/a&gt;, your application logic can be built with your view.  The popular term for these types of frameworks is MV*.&lt;/p&gt;
+
+&lt;p&gt;There are plenty of great resources for learning &lt;a href=&quot;http://backbonejs.org/&quot;&gt;backbone.js&lt;/a&gt;.  I would reccommend &lt;a href=&quot;http://addyosmani.com/blog/&quot;&gt;Addy Osmani’s&lt;/a&gt; eBook on developing and understanding &lt;a href=&quot;http://backbonejs.org/&quot;&gt;backbone.js&lt;/a&gt; - &lt;a href=&quot;http://addyosmani.github.io/backbone-fundamentals/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This posting is meant to be a general overview of the very key components in &lt;a href=&quot;http://backbonejs.org/&quot;&gt;backbone.js&lt;/a&gt;.  Hopefully it will give you that ‘A-Ha’ moment before you dive in too deep. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Basic Components&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://backbonejs.org/#Model&quot;&gt;Model&lt;/a&gt; - data and data logic&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://backbonejs.org/#View&quot;&gt;View&lt;/a&gt; - interface and interaction logic&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are plenty of other important concepts, but lets just start with the basics.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Model&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Your &lt;a href=&quot;http://backbonejs.org/#Model&quot;&gt;model&lt;/a&gt; can be simply defined as a way to define your data within &lt;a href=&quot;http://backbonejs.org/&quot;&gt;backbone&lt;/a&gt;.  You extend &lt;em&gt;Backbone.Model&lt;/em&gt;, and define it’s instance properties.  Your resulting &lt;a href=&quot;http://backbonejs.org/#Model&quot;&gt;model&lt;/a&gt; is a constructor function that can be instantiated by calling it.  Let’s create a simple example of creating a simple &lt;em&gt;State&lt;/em&gt; model.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Extend Backbone.model&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StateModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Backbone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({});&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Create an instance of our StateModel&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;statemodel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StateModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Oregon&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;capital&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Salem&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;The View&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;http://backbonejs.org/#View&quot;&gt;view&lt;/a&gt; lets you define your interface, user interactions, and custom events.  If you pass in a model when you instantiate your view, you can provide logic for how your view updates when your model’s data changes.  Lets create a basic view that updates when the State name changes.  Let’s also use underscores template method to return the html.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Extend Backbone.View&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StatesView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Backbone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;click button&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;changeState&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;h2&amp;gt;&amp;lt;%= name %&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;button&amp;gt;Change&amp;lt;/button&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;initialize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// update view when model changes&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;change&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toJSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()));&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;changeState&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;South Carolina&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Create an instance of our StatesView&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;statesview&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StatesView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;statemodel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Lastly, lets render the html and push the element to the DOM.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;#states&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;statesview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Working Example - &lt;a href=&quot;http://jsfiddle.net/hhsgg80o/&quot;&gt;in JSFiddle&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;EBook - &lt;a href=&quot;http://addyosmani.github.io/backbone-fundamentals/&quot;&gt;By Addy Osmani&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Small Example on GitHub - &lt;a href=&quot;https://github.com/tannerjt/backbone_example&quot;&gt;Example&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Whats Next?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This example is incredibly basic, but that was the intention.  It shows a small working example of the model and view working together.  There are a few basic events, one on the model and another in the view.  I would reccommend &lt;a href=&quot;http://addyosmani.github.io/backbone-fundamentals/&quot;&gt;Addy Osnami’s&lt;/a&gt; book or reading the documentation on &lt;a href=&quot;http://backbonejs.org/&quot;&gt;backbone.js&lt;/a&gt;.  My &lt;a href=&quot;https://github.com/tannerjt/backbone_example&quot;&gt;GitHub Example&lt;/a&gt; expands into using &lt;a href=&quot;http://backbonejs.org/#Collection&quot;&gt;collections&lt;/a&gt;, which you will learn later.  The key thing is to keep building and experimenting with the library until you don’t need to look at the documentation.  Happy Coding!&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 20 Nov 2014 00:00:00 -0800</pubDate>
+        <link>http://tannerjt.github.io/geotanner//geotanner/javascript/frameworks/backbone/2014/11/20/Backbone-The-Essentials.html</link>
+        <guid isPermaLink="true">http://tannerjt.github.io/geotanner//geotanner/javascript/frameworks/backbone/2014/11/20/Backbone-The-Essentials.html</guid>
+        
+        <category>javascript</category>
+        
+        <category>frameworks</category>
+        
+        <category>backbone</category>
+        
+        
+        <category>javascript</category>
+        
+        <category>frameworks</category>
+        
+        <category>backbone</category>
+        
+      </item>
     
       <item>
         <title>classybrew: A data classification tool</title>
